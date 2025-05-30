@@ -1,3 +1,4 @@
+
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Star, Calendar, ShoppingBag, Play } from 'lucide-react';
@@ -164,9 +165,9 @@ const CurrentSeason = () => {
                     <div className="flex items-center gap-2 ml-4">
                       <div className="flex items-center gap-1">
                         <Star className="w-4 h-4 fill-current text-yellow-400" />
-                        <span className="text-sm font-medium">{anime.rating}</span>
+                        <span className="text-sm font-medium text-foreground">{anime.rating}</span>
                       </div>
-                      <Badge variant={anime.status === 'Released' ? 'default' : 'secondary'} className="text-xs">
+                      <Badge variant={anime.status === 'Released' ? 'default' : 'secondary'} className="text-purple-200">
                         {anime.status}
                       </Badge>
                     </div>
@@ -174,12 +175,12 @@ const CurrentSeason = () => {
                   
                   <div className="flex flex-wrap gap-1 mb-2">
                     {anime.genres.slice(0, 4).map((genre) => (
-                      <Badge key={genre} variant="outline" className="text-xs">
+                      <Badge key={genre} variant="outline" className="text-purple-300 border-purple-500/50">
                         {genre}
                       </Badge>
                     ))}
                     {anime.genres.length > 4 && (
-                      <Badge variant="outline" className="text-xs">
+                      <Badge variant="outline" className="text-purple-300 border-purple-500/50">
                         +{anime.genres.length - 4}
                       </Badge>
                     )}
