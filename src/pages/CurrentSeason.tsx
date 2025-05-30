@@ -1,6 +1,7 @@
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Star, Calendar, ShoppingBag, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -20,7 +21,11 @@ const CurrentSeason = () => {
       episodes: "13 eps × 24m",
       description: "Jinwoo has become a formidable necromancer with an army of loyal shadows at his command. But he must master these abilities while keeping them hidden from other hunters, all while racing against the clock to save his mother.",
       image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=200&h=300&fit=crop",
-      merchandiseCount: 24,
+      merchandise: {
+        klamotten: 8,
+        accessoires: 12,
+        figuren: 4
+      },
       format: "Light Novel"
     },
     {
@@ -35,7 +40,11 @@ const CurrentSeason = () => {
       episodes: "16 eps × 24m",
       description: "A year has passed since Subaru's victory at the Sanctuary. He savors a life of fulfillment while Emilia's camp stands united for the royal selection.",
       image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=200&h=300&fit=crop",
-      merchandiseCount: 18,
+      merchandise: {
+        klamotten: 6,
+        accessoires: 8,
+        figuren: 4
+      },
       format: "Light Novel"
     },
     {
@@ -50,7 +59,11 @@ const CurrentSeason = () => {
       episodes: "24 eps × 24m",
       description: "When a favored concubine becomes pregnant, Maomao is put to the test as her food taster. She must keep her wits sharp, not only to protect the concubine but also against rising dangers in the palace.",
       image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=200&h=300&fit=crop",
-      merchandiseCount: 32,
+      merchandise: {
+        klamotten: 15,
+        accessoires: 12,
+        figuren: 5
+      },
       format: "Light Novel"
     },
     {
@@ -65,7 +78,11 @@ const CurrentSeason = () => {
       episodes: "11 eps × 24m",
       description: "Taro Sakamoto was once a legendary hit man feared throughout the criminal underworld. But now he's living the quiet life as the owner of a neighborhood store.",
       image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=200&h=300&fit=crop",
-      merchandiseCount: 16,
+      merchandise: {
+        klamotten: 5,
+        accessoires: 7,
+        figuren: 4
+      },
       format: "Manga"
     },
     {
@@ -80,7 +97,11 @@ const CurrentSeason = () => {
       episodes: "16 eps × 24m",
       description: "After repelling demonic invaders, Princess Liliana leaves the Heiligh Kingdom in search of aid. Hajime decides to join her before tackling the two remaining Great Labyrinths.",
       image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=200&h=300&fit=crop",
-      merchandiseCount: 12,
+      merchandise: {
+        klamotten: 4,
+        accessoires: 5,
+        figuren: 3
+      },
       format: "Light Novel"
     },
     {
@@ -95,10 +116,100 @@ const CurrentSeason = () => {
       episodes: "25 eps × 24m",
       description: "No synopsis has been added to this title.",
       image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=200&h=300&fit=crop",
-      merchandiseCount: 8,
+      merchandise: {
+        klamotten: 3,
+        accessoires: 3,
+        figuren: 2
+      },
       format: "Manga"
     }
   ];
+
+  const renderAnimeCard = (anime: typeof currentSeasonAnime[0], category: 'klamotten' | 'accessoires' | 'figuren') => {
+    const merchandiseCount = anime.merchandise[category];
+    
+    if (merchandiseCount === 0) return null;
+
+    return (
+      <div key={`${anime.id}-${category}`} className="bg-card border border-border rounded-lg p-4 hover:bg-accent/5 transition-colors">
+        <div className="flex gap-4">
+          {/* Anime Cover */}
+          <div className="flex-shrink-0">
+            <img 
+              src={anime.image} 
+              alt={anime.title}
+              className="w-16 h-24 object-cover rounded border"
+            />
+          </div>
+          
+          {/* Content */}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between mb-2">
+              <div className="flex-1">
+                <h3 className="text-lg font-semibold text-foreground line-clamp-1 mb-1">{anime.title}</h3>
+                <div className="flex items-center gap-4 text-sm text-muted-foreground mb-2">
+                  <span>{anime.studio}</span>
+                  <span>•</span>
+                  <span>{anime.episodes}</span>
+                  <span>•</span>
+                  <span>{anime.format}</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 ml-4">
+                <div className="flex items-center gap-1">
+                  <Star className="w-4 h-4 fill-current text-yellow-400" />
+                  <span className="text-sm font-medium">{anime.rating}</span>
+                </div>
+                <Badge variant={anime.status === 'Released' ? 'default' : 'secondary'} className="text-xs">
+                  {anime.status}
+                </Badge>
+              </div>
+            </div>
+            
+            <div className="flex flex-wrap gap-1 mb-2">
+              {anime.genres.slice(0, 4).map((genre) => (
+                <Badge key={genre} variant="outline" className="text-xs">
+                  {genre}
+                </Badge>
+              ))}
+              {anime.genres.length > 4 && (
+                <Badge variant="outline" className="text-xs">
+                  +{anime.genres.length - 4}
+                </Badge>
+              )}
+            </div>
+            
+            <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+              {anime.description}
+            </p>
+            
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-1 text-primary">
+                  <ShoppingBag className="w-4 h-4" />
+                  <span className="text-sm font-medium">{merchandiseCount} {category.charAt(0).toUpperCase() + category.slice(1)} Artikel</span>
+                </div>
+                <div className="flex items-center gap-1 text-muted-foreground">
+                  <Calendar className="w-4 h-4" />
+                  <span className="text-sm">{anime.releaseDate}</span>
+                </div>
+              </div>
+              
+              <div className="flex gap-2">
+                <Button variant="outline" size="sm">
+                  <Play className="w-4 h-4 mr-1" />
+                  Trailer
+                </Button>
+                <Button size="sm">
+                  Merchandise ansehen
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -112,87 +223,37 @@ const CurrentSeason = () => {
           </p>
         </div>
 
-        <div className="space-y-4">
-          {currentSeasonAnime.map((anime) => (
-            <div key={anime.id} className="bg-card border border-border rounded-lg p-4 hover:bg-accent/5 transition-colors">
-              <div className="flex gap-4">
-                {/* Anime Cover */}
-                <div className="flex-shrink-0">
-                  <img 
-                    src={anime.image} 
-                    alt={anime.title}
-                    className="w-16 h-24 object-cover rounded border"
-                  />
-                </div>
-                
-                {/* Content */}
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-start justify-between mb-2">
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-foreground line-clamp-1 mb-1">{anime.title}</h3>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground mb-2">
-                        <span>{anime.studio}</span>
-                        <span>•</span>
-                        <span>{anime.episodes}</span>
-                        <span>•</span>
-                        <span>{anime.format}</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 ml-4">
-                      <div className="flex items-center gap-1">
-                        <Star className="w-4 h-4 fill-current text-yellow-400" />
-                        <span className="text-sm font-medium">{anime.rating}</span>
-                      </div>
-                      <Badge variant={anime.status === 'Released' ? 'default' : 'secondary'} className="text-xs">
-                        {anime.status}
-                      </Badge>
-                    </div>
-                  </div>
-                  
-                  <div className="flex flex-wrap gap-1 mb-2">
-                    {anime.genres.slice(0, 4).map((genre) => (
-                      <Badge key={genre} variant="outline" className="text-xs">
-                        {genre}
-                      </Badge>
-                    ))}
-                    {anime.genres.length > 4 && (
-                      <Badge variant="outline" className="text-xs">
-                        +{anime.genres.length - 4}
-                      </Badge>
-                    )}
-                  </div>
-                  
-                  <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-                    {anime.description}
-                  </p>
-                  
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className="flex items-center gap-1 text-primary">
-                        <ShoppingBag className="w-4 h-4" />
-                        <span className="text-sm font-medium">{anime.merchandiseCount} Merchandise Artikel</span>
-                      </div>
-                      <div className="flex items-center gap-1 text-muted-foreground">
-                        <Calendar className="w-4 h-4" />
-                        <span className="text-sm">{anime.releaseDate}</span>
-                      </div>
-                    </div>
-                    
-                    <div className="flex gap-2">
-                      <Button variant="outline" size="sm">
-                        <Play className="w-4 h-4 mr-1" />
-                        Trailer
-                      </Button>
-                      <Button size="sm">
-                        Merchandise ansehen
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        <Tabs defaultValue="klamotten" className="w-full">
+          <TabsList className="grid w-full grid-cols-3">
+            <TabsTrigger value="klamotten">Klamotten</TabsTrigger>
+            <TabsTrigger value="accessoires">Accessoires</TabsTrigger>
+            <TabsTrigger value="figuren">Figuren</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="klamotten" className="mt-6">
+            <div className="space-y-4">
+              {currentSeasonAnime
+                .filter(anime => anime.merchandise.klamotten > 0)
+                .map((anime) => renderAnimeCard(anime, 'klamotten'))}
             </div>
-          ))}
-        </div>
+          </TabsContent>
+          
+          <TabsContent value="accessoires" className="mt-6">
+            <div className="space-y-4">
+              {currentSeasonAnime
+                .filter(anime => anime.merchandise.accessoires > 0)
+                .map((anime) => renderAnimeCard(anime, 'accessoires'))}
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="figuren" className="mt-6">
+            <div className="space-y-4">
+              {currentSeasonAnime
+                .filter(anime => anime.merchandise.figuren > 0)
+                .map((anime) => renderAnimeCard(anime, 'figuren'))}
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
       
       <Footer />
