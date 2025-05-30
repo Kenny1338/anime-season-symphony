@@ -36,11 +36,11 @@ const FeaturedAnime = () => {
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Anime der Winter Season</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-4xl font-bold text-foreground mb-4">Featured Anime der Winter Season</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Die beliebtesten Anime der aktuellen Season mit exklusivem Merchandise
           </p>
         </div>
@@ -69,19 +69,19 @@ const FeaturedAnime = () => {
               </div>
               
               <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{anime.title}</h3>
-                <p className="text-gray-600 mb-4">{anime.description}</p>
+                <h3 className="text-xl font-bold text-foreground mb-2">{anime.title}</h3>
+                <p className="text-muted-foreground mb-4">{anime.description}</p>
                 
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm text-gray-500">
+                  <span className="text-sm text-muted-foreground">
                     {anime.merchandiseCount} Artikel verfügbar
                   </span>
-                  <span className="text-sm font-medium text-primary-600">
+                  <span className="text-sm font-medium text-primary">
                     Bis März 2025
                   </span>
                 </div>
                 
-                <Button className="w-full material-button bg-primary-500 hover:bg-primary-600 text-white">
+                <Button className="w-full material-button bg-primary hover:bg-primary/90 text-primary-foreground">
                   Merchandise ansehen
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>

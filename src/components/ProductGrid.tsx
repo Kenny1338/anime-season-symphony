@@ -74,11 +74,11 @@ const ProductGrid = () => {
   ];
 
   return (
-    <section className="py-12 bg-gray-50">
+    <section className="py-12 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Winter 2025 Kollektion</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold text-foreground mb-4">Winter 2025 Kollektion</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             Entdecke exklusive Merchandise-Artikel zu den beliebtesten Anime der aktuellen Season.
             Nur solange die Season läuft verfügbar!
           </p>
