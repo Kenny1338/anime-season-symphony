@@ -1,8 +1,9 @@
 
-import { Search, ShoppingCart, User, Menu } from 'lucide-react';
+import { Search, User, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
+import ShoppingCartSidebar from './ShoppingCartSidebar';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -53,12 +54,7 @@ const Header = () => {
             <Button variant="ghost" size="sm" className="lg:hidden">
               <Search className="w-5 h-5" />
             </Button>
-            <Button variant="ghost" size="sm" className="relative">
-              <ShoppingCart className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                3
-              </span>
-            </Button>
+            <ShoppingCartSidebar />
             <Button variant="ghost" size="sm">
               <User className="w-5 h-5" />
             </Button>
@@ -76,7 +72,7 @@ const Header = () => {
             </nav>
             <div className="mt-4 lg:hidden">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-5" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                 <Input
                   placeholder="Anime, Charaktere, Merchandise..."
                   className="pl-10 pr-4 py-2 w-full rounded-full border-2 border-input focus:border-primary bg-background"
