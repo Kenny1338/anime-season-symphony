@@ -69,7 +69,7 @@ const SeasonCountdown = () => {
           <p className="text-white/80">Limitierte Kollektionen nur für diese Season verfügbar!</p>
         </div>
         
-        <Card style={{ backgroundColor: '#a58973', borderColor: '#6B5139' }} className="border-2 text-white max-w-2xl mx-auto">
+        <Card style={{ backgroundColor: '#845f52', borderColor: '#6B5139' }} className="border-2 text-white max-w-2xl mx-auto">
           <div className="p-6 text-center">
             <h3 className="text-lg font-semibold mb-4">Nächste Season: {next.name}</h3>
             <div className="grid grid-cols-4 gap-4">
