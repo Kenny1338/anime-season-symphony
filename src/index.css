@@ -14,7 +14,7 @@
     --popover: 255 255 255;
     --popover-foreground: 15 23 42;
 
-    --primary: 24 144 255;
+    --primary: 99 102 241;
     --primary-foreground: 255 255 255;
 
     --secondary: 241 245 249;
@@ -31,7 +31,7 @@
 
     --border: 226 232 240;
     --input: 226 232 240;
-    --ring: 24 144 255;
+    --ring: 99 102 241;
 
     --radius: 8px;
   }
@@ -46,7 +46,7 @@
     --popover: 30 41 59;
     --popover-foreground: 241 245 249;
 
-    --primary: 56 189 248;
+    --primary: 129 140 248;
     --primary-foreground: 15 23 42;
 
     --secondary: 51 65 85;
@@ -63,7 +63,7 @@
 
     --border: 51 65 85;
     --input: 51 65 85;
-    --ring: 56 189 248;
+    --ring: 129 140 248;
   }
 }
 
@@ -80,7 +80,7 @@
 
 @layer components {
   .material-card {
-    @apply bg-white rounded-lg shadow-material transition-shadow duration-300 hover:shadow-material-md;
+    @apply bg-card rounded-lg shadow-material transition-shadow duration-300 hover:shadow-material-md;
   }
   
   .material-button {
@@ -88,6 +88,6 @@
   }
   
   .material-input {
-    @apply border-0 border-b-2 border-gray-300 focus:border-primary-500 bg-transparent px-0 py-2 focus:ring-0 transition-colors duration-200;
+    @apply border-0 border-b-2 border-input focus:border-primary bg-transparent px-0 py-2 focus:ring-0 transition-colors duration-200;
   }
 }
