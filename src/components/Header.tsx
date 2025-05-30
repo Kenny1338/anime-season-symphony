@@ -3,6 +3,7 @@ import { Search, User, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import ShoppingCartSidebar from './ShoppingCartSidebar';
 
 const Header = () => {
@@ -22,17 +23,17 @@ const Header = () => {
             >
               <Menu className="w-5 h-5" />
             </Button>
-            <div className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center">
                 <span className="text-primary-foreground font-bold text-sm">AS</span>
               </div>
               <h1 className="text-xl font-bold text-foreground hidden sm:block">AnimeSeason</h1>
-            </div>
+            </Link>
           </div>
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Aktuelle Season</a>
+            <Link to="/current-season" className="text-muted-foreground hover:text-primary font-medium transition-colors">Aktuelle Season</Link>
             <a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Kategorien</a>
             <a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Neu</a>
             <a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Sale</a>
@@ -65,7 +66,7 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden border-t border-border py-4">
             <nav className="flex flex-col space-y-3">
-              <a href="#" className="text-muted-foreground hover:text-primary font-medium">Aktuelle Season</a>
+              <Link to="/current-season" className="text-muted-foreground hover:text-primary font-medium">Aktuelle Season</Link>
               <a href="#" className="text-muted-foreground hover:text-primary font-medium">Kategorien</a>
               <a href="#" className="text-muted-foreground hover:text-primary font-medium">Neu</a>
               <a href="#" className="text-muted-foreground hover:text-primary font-medium">Sale</a>
