@@ -82,10 +82,10 @@ const AIChat = () => {
     return (
       <Button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 rounded-full w-16 h-16 shadow-2xl bg-card hover:bg-card/80 z-50 transition-all duration-300 hover:scale-110 border border-border"
+        className="fixed bottom-6 right-6 rounded-full w-16 h-16 shadow-2xl glass-card hover:scale-110 z-50 transition-all duration-300 border-white/20 glow-effect"
         size="lg"
       >
-        <MessageCircle className="w-7 h-7 text-foreground" />
+        <MessageCircle className="w-7 h-7 text-primary" />
       </Button>
     );
   }
@@ -93,17 +93,17 @@ const AIChat = () => {
   return (
     <Card className={`fixed bottom-6 right-6 w-96 shadow-2xl z-50 transition-all duration-500 ease-in-out transform ${
       isMinimized ? 'h-16' : 'h-[32rem]'
-    } bg-card border-border overflow-hidden`}>
+    } glass-card border-white/20 overflow-hidden glow-effect`}>
       {/* Header */}
-      <div className="flex items-center justify-between p-4 bg-card border-b border-border">
+      <div className="flex items-center justify-between p-4 bg-gradient-to-r from-purple-500/20 to-blue-500/20 border-b border-white/10">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-muted rounded-full flex items-center justify-center">
-            <Bot className="w-5 h-5 text-foreground" />
+          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center shadow-glow">
+            <Bot className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h3 className="font-semibold text-sm text-foreground">AI Sales Agent</h3>
+            <h3 className="font-semibold text-sm text-foreground bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">AI Sales Agent</h3>
             <div className="flex items-center space-x-1">
-              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
               <p className="text-xs text-muted-foreground">Online</p>
             </div>
           </div>
@@ -113,7 +113,7 @@ const AIChat = () => {
             variant="ghost"
             size="sm"
             onClick={() => setIsMinimized(!isMinimized)}
-            className="text-foreground hover:bg-muted transition-colors duration-200"
+            className="text-foreground hover:bg-white/10 transition-colors duration-200 hover:glow-effect"
           >
             <Minimize2 className="w-4 h-4" />
           </Button>
@@ -121,7 +121,7 @@ const AIChat = () => {
             variant="ghost"
             size="sm"
             onClick={() => setIsOpen(false)}
-            className="text-foreground hover:bg-muted transition-colors duration-200"
+            className="text-foreground hover:bg-white/10 transition-colors duration-200 hover:glow-effect"
           >
             <X className="w-4 h-4" />
           </Button>
@@ -131,22 +131,22 @@ const AIChat = () => {
       {!isMinimized && (
         <>
           {/* Messages Container */}
-          <div className="flex-1 p-4 h-80 overflow-y-auto space-y-4 bg-background">
+          <div className="flex-1 p-4 h-80 overflow-y-auto space-y-4 bg-gradient-to-b from-background/80 to-background/60 backdrop-blur-sm">
             {messages.map((message) => (
               <div
                 key={message.id}
                 className={`flex items-start space-x-2 ${message.isUser ? 'justify-end' : 'justify-start'} animate-in slide-in-from-bottom-2 duration-500`}
               >
                 {!message.isUser && (
-                  <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center flex-shrink-0">
-                    <Bot className="w-4 h-4 text-foreground" />
+                  <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-glow">
+                    <Bot className="w-4 h-4 text-white" />
                   </div>
                 )}
                 <div
                   className={`max-w-[75%] p-3 rounded-2xl text-sm transition-all duration-300 hover:shadow-md ${
                     message.isUser
-                      ? 'bg-primary text-primary-foreground rounded-br-md shadow-lg'
-                      : 'bg-card text-foreground rounded-bl-md shadow-md border border-border'
+                      ? 'bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-br-md shadow-glow'
+                      : 'glass-card text-foreground rounded-bl-md shadow-md border-white/20 neon-border'
                   }`}
                 >
                   <p className="leading-relaxed">{message.text}</p>
@@ -155,18 +155,18 @@ const AIChat = () => {
                   </span>
                 </div>
                 {message.isUser && (
-                  <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center flex-shrink-0">
-                    <User className="w-4 h-4 text-foreground" />
+                  <div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-glow">
+                    <User className="w-4 h-4 text-white" />
                   </div>
                 )}
               </div>
             ))}
             {isTyping && (
               <div className="flex items-start space-x-2 justify-start animate-in slide-in-from-bottom-2 duration-300">
-                <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center">
-                  <Bot className="w-4 h-4 text-foreground" />
+                <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center shadow-glow">
+                  <Bot className="w-4 h-4 text-white" />
                 </div>
-                <div className="bg-card text-foreground p-3 rounded-2xl rounded-bl-md shadow-md border border-border">
+                <div className="glass-card text-foreground p-3 rounded-2xl rounded-bl-md shadow-md border-white/20">
                   <div className="flex space-x-1 items-center">
                     <div className="w-2 h-2 bg-primary rounded-full animate-bounce"></div>
                     <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
@@ -180,7 +180,7 @@ const AIChat = () => {
           </div>
 
           {/* Input Area */}
-          <div className="p-4 bg-card border-t border-border">
+          <div className="p-4 bg-gradient-to-r from-purple-500/10 to-blue-500/10 border-t border-white/10 backdrop-blur-sm">
             <div className="flex space-x-3 items-end">
               <div className="flex-1 relative">
                 <Input
@@ -188,14 +188,14 @@ const AIChat = () => {
                   onChange={(e) => setNewMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder="Frage mich nach Anime Merchandise..."
-                  className="w-full rounded-2xl border-border focus:border-primary bg-background text-foreground placeholder:text-muted-foreground transition-colors duration-200 pr-12 py-3"
+                  className="w-full rounded-2xl border-white/20 focus:border-primary/50 modern-input text-foreground placeholder:text-muted-foreground transition-colors duration-200 pr-12 py-3"
                   disabled={isTyping}
                 />
               </div>
               <Button
                 onClick={handleSendMessage}
                 disabled={!newMessage.trim() || isTyping}
-                className="rounded-2xl bg-primary hover:bg-primary/90 transition-all duration-200 px-4 py-3 shadow-lg hover:shadow-xl hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="rounded-2xl modern-button transition-all duration-200 px-4 py-3 shadow-glow hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send className="w-4 h-4" />
               </Button>
