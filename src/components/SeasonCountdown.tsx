@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 
@@ -62,7 +61,7 @@ const SeasonCountdown = () => {
   const { current, next } = getCurrentAndNextSeason();
 
   return (
-    <div style={{ background: '#845f52' }} className="text-white py-8">
+    <div style={{ background: '#a58973' }} className="text-white py-8">
       <div className="container mx-auto px-4">
         <div className="text-center mb-6">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">Aktuelle Season: {current.name}</h2>
