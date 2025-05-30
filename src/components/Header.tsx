@@ -1,4 +1,5 @@
 
+
 import { Search, User, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -35,8 +36,6 @@ const Header = () => {
           <nav className="hidden md:flex items-center space-x-8">
             <Link to="/current-season" className="text-muted-foreground hover:text-primary font-medium transition-colors">Aktuelle Season</Link>
             <Link to="/categories" className="text-muted-foreground hover:text-primary font-medium transition-colors">Kategorien</Link>
-            <a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Neu</a>
-            <a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Sale</a>
           </nav>
 
           {/* Search Bar */}
@@ -68,8 +67,6 @@ const Header = () => {
             <nav className="flex flex-col space-y-3">
               <Link to="/current-season" className="text-muted-foreground hover:text-primary font-medium">Aktuelle Season</Link>
               <Link to="/categories" className="text-muted-foreground hover:text-primary font-medium">Kategorien</Link>
-              <a href="#" className="text-muted-foreground hover:text-primary font-medium">Neu</a>
-              <a href="#" className="text-muted-foreground hover:text-primary font-medium">Sale</a>
             </nav>
             <div className="mt-4 lg:hidden">
               <div className="relative">
@@ -88,3 +85,4 @@ const Header = () => {
 };
 
 export default Header;
+
