@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 
@@ -72,19 +73,19 @@ const SeasonCountdown = () => {
           <div className="p-6 text-center">
             <h3 className="text-lg font-semibold mb-4">Nächste Season: {next.name}</h3>
             <div className="grid grid-cols-4 gap-4">
-              <div className="bg-white/20 rounded-lg p-3">
+              <div style={{ backgroundColor: '#c1966c' }} className="rounded-lg p-3">
                 <div className="text-2xl font-bold">{timeLeft.days}</div>
                 <div className="text-sm opacity-80">Tage</div>
               </div>
-              <div className="bg-white/20 rounded-lg p-3">
+              <div style={{ backgroundColor: '#c1966c' }} className="rounded-lg p-3">
                 <div className="text-2xl font-bold">{timeLeft.hours}</div>
                 <div className="text-sm opacity-80">Stunden</div>
               </div>
-              <div className="bg-white/20 rounded-lg p-3">
+              <div style={{ backgroundColor: '#c1966c' }} className="rounded-lg p-3">
                 <div className="text-2xl font-bold">{timeLeft.minutes}</div>
                 <div className="text-sm opacity-80">Minuten</div>
               </div>
-              <div className="bg-white/20 rounded-lg p-3">
+              <div style={{ backgroundColor: '#c1966c' }} className="rounded-lg p-3">
                 <div className="text-2xl font-bold">{timeLeft.seconds}</div>
                 <div className="text-sm opacity-80">Sekunden</div>
               </div>
