@@ -15,7 +15,8 @@ const Categories = () => {
       icon: Shirt,
       itemCount: 156,
       image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&h=300&fit=crop',
-      color: 'bg-blue-500'
+      color: 'bg-blue-500',
+      path: '/categories/klamotten'
     },
     {
       id: 'accessoires',
@@ -24,7 +25,8 @@ const Categories = () => {
       icon: Watch,
       itemCount: 89,
       image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=300&fit=crop',
-      color: 'bg-green-500'
+      color: 'bg-green-500',
+      path: '/categories/accessoires'
     },
     {
       id: 'figuren',
@@ -33,7 +35,8 @@ const Categories = () => {
       icon: User,
       itemCount: 67,
       image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop',
-      color: 'bg-purple-500'
+      color: 'bg-purple-500',
+      path: '/categories/figuren'
     }
   ];
 
@@ -81,9 +84,11 @@ const Categories = () => {
                       <ShoppingBag className="w-4 h-4" />
                       <span className="text-sm">{category.itemCount} Produkte</span>
                     </div>
-                    <Button size="sm" className="group-hover:bg-primary/90">
-                      Entdecken
-                    </Button>
+                    <Link to={category.path}>
+                      <Button size="sm" className="group-hover:bg-primary/90">
+                        Entdecken
+                      </Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
