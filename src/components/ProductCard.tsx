@@ -47,15 +47,15 @@ const ProductCard = ({
         
         {/* Badges */}
         <div className="absolute top-2 left-2 flex flex-col gap-1">
-          {isNew && <Badge className="bg-green-500 text-white">Neu</Badge>}
-          {isLimited && <Badge className="bg-red-500 text-white">Limitiert</Badge>}
+          {isNew && <Badge className="bg-green-500 text-white hover:bg-green-600">Neu</Badge>}
+          {isLimited && <Badge className="bg-red-500 text-white hover:bg-red-600">Limitiert</Badge>}
         </div>
         
         {/* Favorite Button */}
         <Button
           variant="ghost"
           size="sm"
-          className={`absolute top-2 right-2 bg-white/80 hover:bg-white ${isFavorite ? 'text-red-500' : 'text-gray-600'}`}
+          className={`absolute top-2 right-2 bg-background/80 hover:bg-background ${isFavorite ? 'text-red-500' : 'text-muted-foreground'}`}
           onClick={(e) => {
             e.stopPropagation();
             setIsFavorite(!isFavorite);
@@ -66,7 +66,7 @@ const ProductCard = ({
 
         {/* Quick Add to Cart - appears on hover */}
         <div className={`absolute bottom-2 left-2 right-2 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
-          <Button className="w-full material-button bg-primary-500 hover:bg-primary-600 text-white">
+          <Button className="w-full material-button bg-primary hover:bg-primary/90 text-primary-foreground">
             <ShoppingCart className="w-4 h-4 mr-2" />
             In den Warenkorb
           </Button>
@@ -75,8 +75,8 @@ const ProductCard = ({
       
       <CardContent className="p-4">
         <div className="mb-2">
-          <p className="text-sm text-primary-600 font-medium">{anime}</p>
-          <h3 className="font-semibold text-gray-900 line-clamp-2">{name}</h3>
+          <p className="text-sm text-primary font-medium">{anime}</p>
+          <h3 className="font-semibold text-foreground line-clamp-2">{name}</h3>
         </div>
         
         {/* Rating */}
@@ -85,18 +85,18 @@ const ProductCard = ({
             {[...Array(5)].map((_, i) => (
               <Star
                 key={i}
-                className={`w-3 h-3 ${i < Math.floor(rating) ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
+                className={`w-3 h-3 ${i < Math.floor(rating) ? 'text-yellow-400 fill-current' : 'text-muted-foreground'}`}
               />
             ))}
           </div>
-          <span className="text-xs text-gray-600">({reviews})</span>
+          <span className="text-xs text-muted-foreground">({reviews})</span>
         </div>
         
         {/* Price */}
         <div className="flex items-center gap-2">
-          <span className="text-lg font-bold text-gray-900">€{price.toFixed(2)}</span>
+          <span className="text-lg font-bold text-foreground">€{price.toFixed(2)}</span>
           {originalPrice && (
-            <span className="text-sm text-gray-500 line-through">€{originalPrice.toFixed(2)}</span>
+            <span className="text-sm text-muted-foreground line-through">€{originalPrice.toFixed(2)}</span>
           )}
         </div>
       </CardContent>

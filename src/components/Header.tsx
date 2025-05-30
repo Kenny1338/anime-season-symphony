@@ -9,7 +9,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="bg-background shadow-material sticky top-0 z-50 border-b">
+    <header className="bg-background shadow-material sticky top-0 z-50 border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -23,8 +23,8 @@ const Header = () => {
               <Menu className="w-5 h-5" />
             </Button>
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-primary-400 to-primary-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">AS</span>
+              <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-sm">AS</span>
               </div>
               <h1 className="text-xl font-bold text-foreground hidden sm:block">AnimeSeason</h1>
             </div>
@@ -32,10 +32,10 @@ const Header = () => {
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-foreground/70 hover:text-primary font-medium transition-colors">Aktuelle Season</a>
-            <a href="#" className="text-foreground/70 hover:text-primary font-medium transition-colors">Kategorien</a>
-            <a href="#" className="text-foreground/70 hover:text-primary font-medium transition-colors">Neu</a>
-            <a href="#" className="text-foreground/70 hover:text-primary font-medium transition-colors">Sale</a>
+            <a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Aktuelle Season</a>
+            <a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Kategorien</a>
+            <a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Neu</a>
+            <a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Sale</a>
           </nav>
 
           {/* Search Bar */}
@@ -44,7 +44,7 @@ const Header = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
               <Input
                 placeholder="Anime, Charaktere, Merchandise..."
-                className="pl-10 pr-4 py-2 w-full rounded-full border-2 focus:border-primary"
+                className="pl-10 pr-4 py-2 w-full rounded-full border-2 border-input focus:border-primary bg-background"
               />
             </div>
           </div>
@@ -69,19 +69,19 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden border-t py-4">
+          <div className="md:hidden border-t border-border py-4">
             <nav className="flex flex-col space-y-3">
-              <a href="#" className="text-foreground/70 hover:text-primary font-medium">Aktuelle Season</a>
-              <a href="#" className="text-foreground/70 hover:text-primary font-medium">Kategorien</a>
-              <a href="#" className="text-foreground/70 hover:text-primary font-medium">Neu</a>
-              <a href="#" className="text-foreground/70 hover:text-primary font-medium">Sale</a>
+              <a href="#" className="text-muted-foreground hover:text-primary font-medium">Aktuelle Season</a>
+              <a href="#" className="text-muted-foreground hover:text-primary font-medium">Kategorien</a>
+              <a href="#" className="text-muted-foreground hover:text-primary font-medium">Neu</a>
+              <a href="#" className="text-muted-foreground hover:text-primary font-medium">Sale</a>
             </nav>
             <div className="mt-4 lg:hidden">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                 <Input
                   placeholder="Anime, Charaktere, Merchandise..."
-                  className="pl-10 pr-4 py-2 w-full rounded-full border-2 focus:border-primary"
+                  className="pl-10 pr-4 py-2 w-full rounded-full border-2 border-input focus:border-primary bg-background"
                 />
               </div>
             </div>

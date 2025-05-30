@@ -55,14 +55,14 @@ const FeaturedAnime = () => {
                   className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute top-4 left-4 flex gap-2">
-                  <Badge className={`${anime.status === 'Finale' ? 'bg-red-500' : 'bg-green-500'} text-white`}>
+                  <Badge className={`${anime.status === 'Finale' ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'} text-white`}>
                     {anime.status}
                   </Badge>
-                  <Badge variant="secondary" className="bg-black/70 text-white">
+                  <Badge variant="secondary" className="bg-background/80 text-foreground">
                     {anime.episode}
                   </Badge>
                 </div>
-                <div className="absolute top-4 right-4 flex items-center gap-1 bg-black/70 text-white px-2 py-1 rounded">
+                <div className="absolute top-4 right-4 flex items-center gap-1 bg-background/80 text-foreground px-2 py-1 rounded">
                   <Star className="w-4 h-4 fill-current text-yellow-400" />
                   <span className="text-sm font-medium">{anime.rating}</span>
                 </div>

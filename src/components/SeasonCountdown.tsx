@@ -62,30 +62,30 @@ const SeasonCountdown = () => {
   const { current, next } = getCurrentAndNextSeason();
 
   return (
-    <div className="bg-gradient-to-r from-primary-500 to-primary-700 text-white py-8">
+    <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-8">
       <div className="container mx-auto px-4">
         <div className="text-center mb-6">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">Aktuelle Season: {current.name}</h2>
-          <p className="text-primary-100">Limitierte Kollektionen nur für diese Season verfügbar!</p>
+          <p className="text-primary-foreground/80">Limitierte Kollektionen nur für diese Season verfügbar!</p>
         </div>
         
-        <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white max-w-2xl mx-auto">
+        <Card className="bg-background/10 backdrop-blur-sm border-primary-foreground/20 text-primary-foreground max-w-2xl mx-auto">
           <div className="p-6 text-center">
             <h3 className="text-lg font-semibold mb-4">Nächste Season: {next.name}</h3>
             <div className="grid grid-cols-4 gap-4">
-              <div className="bg-white/20 rounded-lg p-3">
+              <div className="bg-background/20 rounded-lg p-3">
                 <div className="text-2xl font-bold">{timeLeft.days}</div>
                 <div className="text-sm opacity-80">Tage</div>
               </div>
-              <div className="bg-white/20 rounded-lg p-3">
+              <div className="bg-background/20 rounded-lg p-3">
                 <div className="text-2xl font-bold">{timeLeft.hours}</div>
                 <div className="text-sm opacity-80">Stunden</div>
               </div>
-              <div className="bg-white/20 rounded-lg p-3">
+              <div className="bg-background/20 rounded-lg p-3">
                 <div className="text-2xl font-bold">{timeLeft.minutes}</div>
                 <div className="text-sm opacity-80">Minuten</div>
               </div>
-              <div className="bg-white/20 rounded-lg p-3">
+              <div className="bg-background/20 rounded-lg p-3">
                 <div className="text-2xl font-bold">{timeLeft.seconds}</div>
                 <div className="text-sm opacity-80">Sekunden</div>
               </div>
