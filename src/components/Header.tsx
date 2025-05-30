@@ -34,7 +34,7 @@ const Header = () => {
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link to="/current-season" className="text-muted-foreground hover:text-primary font-medium transition-colors">Aktuelle Season</Link>
-            <a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Kategorien</a>
+            <Link to="/categories" className="text-muted-foreground hover:text-primary font-medium transition-colors">Kategorien</Link>
             <a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Neu</a>
             <a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Sale</a>
           </nav>
@@ -67,7 +67,7 @@ const Header = () => {
           <div className="md:hidden border-t border-border py-4">
             <nav className="flex flex-col space-y-3">
               <Link to="/current-season" className="text-muted-foreground hover:text-primary font-medium">Aktuelle Season</Link>
-              <a href="#" className="text-muted-foreground hover:text-primary font-medium">Kategorien</a>
+              <Link to="/categories" className="text-muted-foreground hover:text-primary font-medium">Kategorien</Link>
               <a href="#" className="text-muted-foreground hover:text-primary font-medium">Neu</a>
               <a href="#" className="text-muted-foreground hover:text-primary font-medium">Sale</a>
             </nav>

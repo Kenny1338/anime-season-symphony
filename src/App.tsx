@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeProvider";
 import Index from "./pages/Index";
 import CurrentSeason from "./pages/CurrentSeason";
+import Categories from "./pages/Categories";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,6 +22,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/current-season" element={<CurrentSeason />} />
+            <Route path="/categories" element={<Categories />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
