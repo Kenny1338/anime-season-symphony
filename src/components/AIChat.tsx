@@ -82,10 +82,10 @@ const AIChat = () => {
     return (
       <Button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 rounded-full w-16 h-16 shadow-2xl bg-primary hover:bg-primary/90 z-50 transition-all duration-300 hover:scale-110"
+        className="fixed bottom-6 right-6 rounded-full w-16 h-16 shadow-2xl bg-slate-700 hover:bg-slate-600 z-50 transition-all duration-300 hover:scale-110"
         size="lg"
       >
-        <MessageCircle className="w-7 h-7 text-primary-foreground" />
+        <MessageCircle className="w-7 h-7 text-white" />
       </Button>
     );
   }
@@ -93,12 +93,12 @@ const AIChat = () => {
   return (
     <Card className={`fixed bottom-6 right-6 w-96 shadow-2xl z-50 transition-all duration-500 ease-in-out transform ${
       isMinimized ? 'h-16' : 'h-[32rem]'
-    } bg-card border-border overflow-hidden`}>
-      {/* Header mit dunklem Design */}
-      <div className="flex items-center justify-between p-4 bg-primary text-primary-foreground">
+    } bg-slate-800 border-slate-600 overflow-hidden`}>
+      {/* Header */}
+      <div className="flex items-center justify-between p-4 bg-slate-700 text-white">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-primary-foreground/10 rounded-full flex items-center justify-center backdrop-blur-sm">
-            <Bot className="w-5 h-5" />
+          <div className="w-10 h-10 bg-slate-600 rounded-full flex items-center justify-center">
+            <Bot className="w-5 h-5 text-white" />
           </div>
           <div>
             <h3 className="font-semibold text-sm">AI Sales Agent</h3>
@@ -113,7 +113,7 @@ const AIChat = () => {
             variant="ghost"
             size="sm"
             onClick={() => setIsMinimized(!isMinimized)}
-            className="text-primary-foreground hover:bg-primary-foreground/10 transition-colors duration-200"
+            className="text-white hover:bg-slate-600 transition-colors duration-200"
           >
             <Minimize2 className="w-4 h-4" />
           </Button>
@@ -121,7 +121,7 @@ const AIChat = () => {
             variant="ghost"
             size="sm"
             onClick={() => setIsOpen(false)}
-            className="text-primary-foreground hover:bg-primary-foreground/10 transition-colors duration-200"
+            className="text-white hover:bg-slate-600 transition-colors duration-200"
           >
             <X className="w-4 h-4" />
           </Button>
@@ -130,48 +130,48 @@ const AIChat = () => {
 
       {!isMinimized && (
         <>
-          {/* Messages Container mit dunklem Design */}
-          <div className="flex-1 p-4 h-80 overflow-y-auto space-y-4 bg-background">
+          {/* Messages Container */}
+          <div className="flex-1 p-4 h-80 overflow-y-auto space-y-4 bg-slate-800">
             {messages.map((message) => (
               <div
                 key={message.id}
                 className={`flex items-start space-x-2 ${message.isUser ? 'justify-end' : 'justify-start'} animate-in slide-in-from-bottom-2 duration-500`}
               >
                 {!message.isUser && (
-                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                    <Bot className="w-4 h-4 text-primary-foreground" />
+                  <div className="w-8 h-8 bg-slate-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Bot className="w-4 h-4 text-white" />
                   </div>
                 )}
                 <div
                   className={`max-w-[75%] p-3 rounded-2xl text-sm transition-all duration-300 hover:shadow-md ${
                     message.isUser
-                      ? 'bg-primary text-primary-foreground rounded-br-md shadow-lg'
-                      : 'bg-card text-card-foreground rounded-bl-md shadow-md border border-border'
+                      ? 'bg-blue-600 text-white rounded-br-md shadow-lg'
+                      : 'bg-slate-700 text-slate-100 rounded-bl-md shadow-md border border-slate-600'
                   }`}
                 >
                   <p className="leading-relaxed">{message.text}</p>
-                  <span className={`text-xs mt-1 block ${message.isUser ? 'opacity-70' : 'text-muted-foreground'}`}>
+                  <span className={`text-xs mt-1 block ${message.isUser ? 'opacity-70' : 'text-slate-400'}`}>
                     {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </span>
                 </div>
                 {message.isUser && (
-                  <div className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center flex-shrink-0">
-                    <User className="w-4 h-4 text-secondary-foreground" />
+                  <div className="w-8 h-8 bg-slate-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <User className="w-4 h-4 text-white" />
                   </div>
                 )}
               </div>
             ))}
             {isTyping && (
               <div className="flex items-start space-x-2 justify-start animate-in slide-in-from-bottom-2 duration-300">
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                  <Bot className="w-4 h-4 text-primary-foreground" />
+                <div className="w-8 h-8 bg-slate-600 rounded-full flex items-center justify-center">
+                  <Bot className="w-4 h-4 text-white" />
                 </div>
-                <div className="bg-card text-card-foreground p-3 rounded-2xl rounded-bl-md shadow-md border border-border">
+                <div className="bg-slate-700 text-slate-100 p-3 rounded-2xl rounded-bl-md shadow-md border border-slate-600">
                   <div className="flex space-x-1 items-center">
-                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                    <span className="text-xs text-muted-foreground ml-2">tippt...</span>
+                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    <span className="text-xs text-slate-400 ml-2">tippt...</span>
                   </div>
                 </div>
               </div>
@@ -179,8 +179,8 @@ const AIChat = () => {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input Area mit dunklem Design */}
-          <div className="p-4 bg-card border-t border-border">
+          {/* Input Area */}
+          <div className="p-4 bg-slate-800 border-t border-slate-600">
             <div className="flex space-x-3 items-end">
               <div className="flex-1 relative">
                 <Input
@@ -188,19 +188,19 @@ const AIChat = () => {
                   onChange={(e) => setNewMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder="Frage mich nach Anime Merchandise..."
-                  className="w-full rounded-2xl border-border focus:border-primary transition-colors duration-200 pr-12 py-3 bg-input text-foreground"
+                  className="w-full rounded-2xl border-slate-600 focus:border-blue-500 bg-slate-900 text-white placeholder:text-slate-400 transition-colors duration-200 pr-12 py-3"
                   disabled={isTyping}
                 />
               </div>
               <Button
                 onClick={handleSendMessage}
                 disabled={!newMessage.trim() || isTyping}
-                className="rounded-2xl bg-primary hover:bg-primary/90 transition-all duration-200 px-4 py-3 shadow-lg hover:shadow-xl hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="rounded-2xl bg-blue-600 hover:bg-blue-500 transition-all duration-200 px-4 py-3 shadow-lg hover:shadow-xl hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send className="w-4 h-4" />
               </Button>
             </div>
-            <p className="text-xs text-muted-foreground mt-2 text-center">
+            <p className="text-xs text-slate-400 mt-2 text-center">
               Powered by AI • Drücke Enter zum Senden
             </p>
           </div>
