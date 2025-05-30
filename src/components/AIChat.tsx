@@ -82,7 +82,7 @@ const AIChat = () => {
     return (
       <Button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 rounded-full w-16 h-16 shadow-2xl bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 z-50 transition-all duration-300 hover:scale-110 animate-pulse"
+        className="fixed bottom-6 right-6 rounded-full w-16 h-16 shadow-2xl bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 z-50 transition-all duration-300 hover:scale-110"
         size="lg"
       >
         <MessageCircle className="w-7 h-7 text-white" />
@@ -103,7 +103,7 @@ const AIChat = () => {
           <div>
             <h3 className="font-semibold text-sm">AI Sales Agent</h3>
             <div className="flex items-center space-x-1">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
               <p className="text-xs opacity-90">Online</p>
             </div>
           </div>
