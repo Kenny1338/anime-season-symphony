@@ -3,37 +3,44 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 @layer base {
   :root {
-    --background: 15 23 42;
-    --foreground: 241 245 249;
+    --background: 9 9 11;
+    --foreground: 250 250 250;
 
-    --card: 30 41 59;
-    --card-foreground: 241 245 249;
+    --card: 24 24 27;
+    --card-foreground: 250 250 250;
 
-    --popover: 30 41 59;
-    --popover-foreground: 241 245 249;
+    --popover: 24 24 27;
+    --popover-foreground: 250 250 250;
 
-    --primary: 129 140 248;
-    --primary-foreground: 15 23 42;
+    --primary: 147 51 234;
+    --primary-foreground: 255 255 255;
 
-    --secondary: 51 65 85;
-    --secondary-foreground: 241 245 249;
+    --secondary: 63 63 70;
+    --secondary-foreground: 250 250 250;
 
-    --muted: 51 65 85;
-    --muted-foreground: 148 163 184;
+    --muted: 39 39 42;
+    --muted-foreground: 161 161 170;
 
-    --accent: 51 65 85;
-    --accent-foreground: 241 245 249;
+    --accent: 39 39 42;
+    --accent-foreground: 250 250 250;
 
-    --destructive: 220 38 38;
+    --destructive: 239 68 68;
     --destructive-foreground: 255 255 255;
 
-    --border: 51 65 85;
-    --input: 51 65 85;
-    --ring: 129 140 248;
+    --border: 39 39 42;
+    --input: 39 39 42;
+    --ring: 147 51 234;
 
-    --radius: 8px;
+    --radius: 12px;
+
+    /* Gradient colors */
+    --gradient-from: 147 51 234;
+    --gradient-via: 59 130 246;
+    --gradient-to: 236 72 153;
   }
 }
 
@@ -44,20 +51,46 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-image: radial-gradient(circle at 25% 25%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
   }
 }
 
 @layer components {
-  .material-card {
-    @apply bg-card rounded-lg shadow-material transition-shadow duration-300 hover:shadow-material-md;
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl;
   }
   
-  .material-button {
-    @apply px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-material hover:shadow-material-md active:scale-95;
+  .gradient-card {
+    @apply bg-gradient-to-br from-purple-600/20 via-blue-500/20 to-pink-500/20 backdrop-blur-xl border border-white/10 rounded-2xl;
   }
   
-  .material-input {
-    @apply border-0 border-b-2 border-input focus:border-primary bg-transparent px-0 py-2 focus:ring-0 transition-colors duration-200;
+  .modern-button {
+    @apply px-6 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95;
+    background: linear-gradient(135deg, rgb(147 51 234) 0%, rgb(59 130 246) 100%);
+  }
+  
+  .modern-button:hover {
+    box-shadow: 0 20px 40px rgba(147, 51, 234, 0.4);
+    transform: translateY(-2px);
+  }
+  
+  .glow-effect {
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+  }
+  
+  .glow-effect:hover {
+    box-shadow: 0 0 30px rgba(147, 51, 234, 0.5);
+  }
+  
+  .neon-border {
+    border: 1px solid rgba(147, 51, 234, 0.5);
+    box-shadow: 0 0 10px rgba(147, 51, 234, 0.3),
+                inset 0 0 10px rgba(147, 51, 234, 0.1);
+  }
+  
+  .modern-input {
+    @apply border-0 bg-card/50 backdrop-blur-sm focus:bg-card/80 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 transition-all duration-200;
   }
 }
