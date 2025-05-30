@@ -9,9 +9,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 const Accessoires = () => {
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedMaterial, setSelectedMaterial] = useState('');
-  const [sortBy, setSortBy] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedMaterial, setSelectedMaterial] = useState('all');
+  const [sortBy, setSortBy] = useState('all');
 
   const categories = ['Taschen', 'Schmuck', 'Keychains', 'Uhren', 'Caps', 'Schals'];
   const materials = ['Metall', 'Stoff', 'Kunstleder', 'Silikon', 'Acryl', 'Holz'];
@@ -69,8 +69,8 @@ const Accessoires = () => {
   ];
 
   const filteredProducts = products.filter(product => {
-    if (selectedCategory && product.category !== selectedCategory) return false;
-    if (selectedMaterial && product.material !== selectedMaterial) return false;
+    if (selectedCategory !== 'all' && product.category !== selectedCategory) return false;
+    if (selectedMaterial !== 'all' && product.material !== selectedMaterial) return false;
     return true;
   });
 
@@ -102,7 +102,7 @@ const Accessoires = () => {
                   <SelectValue placeholder="Alle Kategorien" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Alle Kategorien</SelectItem>
+                  <SelectItem value="all">Alle Kategorien</SelectItem>
                   {categories.map(category => (
                     <SelectItem key={category} value={category}>{category}</SelectItem>
                   ))}
@@ -118,7 +118,7 @@ const Accessoires = () => {
                   <SelectValue placeholder="Alle Materialien" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Alle Materialien</SelectItem>
+                  <SelectItem value="all">Alle Materialien</SelectItem>
                   {materials.map(material => (
                     <SelectItem key={material} value={material}>{material}</SelectItem>
                   ))}
@@ -134,6 +134,7 @@ const Accessoires = () => {
                   <SelectValue placeholder="Auswählen..." />
                 </SelectTrigger>
                 <SelectContent>
+                  <SelectItem value="all">Standard</SelectItem>
                   <SelectItem value="price-asc">Preis: Niedrig bis Hoch</SelectItem>
                   <SelectItem value="price-desc">Preis: Hoch bis Niedrig</SelectItem>
                   <SelectItem value="rating">Bewertung</SelectItem>
@@ -147,9 +148,9 @@ const Accessoires = () => {
               <Button 
                 variant="outline" 
                 onClick={() => {
-                  setSelectedCategory('');
-                  setSelectedMaterial('');
-                  setSortBy('');
+                  setSelectedCategory('all');
+                  setSelectedMaterial('all');
+                  setSortBy('all');
                 }}
               >
                 Filter zurücksetzen
@@ -238,8 +239,8 @@ const Accessoires = () => {
               variant="outline" 
               className="mt-4"
               onClick={() => {
-                setSelectedCategory('');
-                setSelectedMaterial('');
+                setSelectedCategory('all');
+                setSelectedMaterial('all');
               }}
             >
               Filter zurücksetzen

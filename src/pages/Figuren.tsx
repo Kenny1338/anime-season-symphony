@@ -9,10 +9,10 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 const Figuren = () => {
-  const [selectedSize, setSelectedSize] = useState('');
-  const [selectedPackaging, setSelectedPackaging] = useState('');
-  const [selectedType, setSelectedType] = useState('');
-  const [sortBy, setSortBy] = useState('');
+  const [selectedSize, setSelectedSize] = useState('all');
+  const [selectedPackaging, setSelectedPackaging] = useState('all');
+  const [selectedType, setSelectedType] = useState('all');
+  const [sortBy, setSortBy] = useState('all');
 
   const sizes = ['1/12', '1/10', '1/8', '1/7', '1/6', '1/4'];
   const packagingTypes = ['Standard Box', 'Window Box', 'Blister Pack', 'Premium Box', 'Collector Edition'];
@@ -79,9 +79,9 @@ const Figuren = () => {
   ];
 
   const filteredProducts = products.filter(product => {
-    if (selectedSize && product.size !== selectedSize) return false;
-    if (selectedPackaging && product.packaging !== selectedPackaging) return false;
-    if (selectedType && product.type !== selectedType) return false;
+    if (selectedSize !== 'all' && product.size !== selectedSize) return false;
+    if (selectedPackaging !== 'all' && product.packaging !== selectedPackaging) return false;
+    if (selectedType !== 'all' && product.type !== selectedType) return false;
     return true;
   });
 
@@ -113,7 +113,7 @@ const Figuren = () => {
                   <SelectValue placeholder="Alle Größen" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Alle Größen</SelectItem>
+                  <SelectItem value="all">Alle Größen</SelectItem>
                   {sizes.map(size => (
                     <SelectItem key={size} value={size}>{size}</SelectItem>
                   ))}
@@ -129,7 +129,7 @@ const Figuren = () => {
                   <SelectValue placeholder="Alle Typen" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Alle Typen</SelectItem>
+                  <SelectItem value="all">Alle Typen</SelectItem>
                   {figureTypes.map(type => (
                     <SelectItem key={type} value={type}>{type}</SelectItem>
                   ))}
@@ -145,7 +145,7 @@ const Figuren = () => {
                   <SelectValue placeholder="Alle Verpackungen" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Alle Verpackungen</SelectItem>
+                  <SelectItem value="all">Alle Verpackungen</SelectItem>
                   {packagingTypes.map(packaging => (
                     <SelectItem key={packaging} value={packaging}>{packaging}</SelectItem>
                   ))}
@@ -161,6 +161,7 @@ const Figuren = () => {
                   <SelectValue placeholder="Auswählen..." />
                 </SelectTrigger>
                 <SelectContent>
+                  <SelectItem value="all">Standard</SelectItem>
                   <SelectItem value="price-asc">Preis: Niedrig bis Hoch</SelectItem>
                   <SelectItem value="price-desc">Preis: Hoch bis Niedrig</SelectItem>
                   <SelectItem value="rating">Bewertung</SelectItem>
@@ -174,10 +175,10 @@ const Figuren = () => {
               <Button 
                 variant="outline" 
                 onClick={() => {
-                  setSelectedSize('');
-                  setSelectedPackaging('');
-                  setSelectedType('');
-                  setSortBy('');
+                  setSelectedSize('all');
+                  setSelectedPackaging('all');
+                  setSelectedType('all');
+                  setSortBy('all');
                 }}
               >
                 Filter zurücksetzen
@@ -275,9 +276,9 @@ const Figuren = () => {
               variant="outline" 
               className="mt-4"
               onClick={() => {
-                setSelectedSize('');
-                setSelectedPackaging('');
-                setSelectedType('');
+                setSelectedSize('all');
+                setSelectedPackaging('all');
+                setSelectedType('all');
               }}
             >
               Filter zurücksetzen
