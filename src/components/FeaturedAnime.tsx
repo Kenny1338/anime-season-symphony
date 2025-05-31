@@ -1,108 +1,159 @@
-
-import { Card, CardContent } from '@/components/ui/card';
+import { Star, Heart, Eye, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Star } from 'lucide-react';
 
 const FeaturedAnime = () => {
   const featuredAnime = [
     {
-      title: 'Demon Slayer: Kimetsu no Yaiba',
-      rating: 9.1,
-      status: 'Aktuell',
-      episode: 'Episode 12',
-      description: 'Tanjiro und seine Gefährten kämpfen gegen mächtige Dämonen.',
-      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop',
-      merchandiseCount: 24
+      id: 1,
+      title: "Demon Slayer: Kimetsu no Yaiba",
+      subtitle: "Hashira Training Arc",
+      rating: 9.2,
+      popularity: "98%",
+      image: "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=800",
+      genre: ["Action", "Supernatural", "Historical"],
+      description: "Tanjiro und seine Freunde bereiten sich auf den finalen Kampf vor. Exklusive Merchandise-Artikel jetzt verfügbar!",
+      merchandise: ["Figuren", "Katanas", "Cosplay"],
+      trending: true
     },
     {
-      title: 'Attack on Titan: Final Season',
-      rating: 9.3,
-      status: 'Finale',
-      episode: 'Episode 28',
-      description: 'Das epische Ende der Geschichte um Eren und die Titanen.',
-      image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=400&fit=crop',
-      merchandiseCount: 18
+      id: 2,
+      title: "Jujutsu Kaisen",
+      subtitle: "Shibuya Incident",
+      rating: 9.0,
+      popularity: "95%",
+      image: "https://images.pexels.com/photos/7991225/pexels-photo-7991225.jpeg?auto=compress&cs=tinysrgb&w=800",
+      genre: ["Action", "School", "Supernatural"],
+      description: "Die dunkelste Arc der Serie bringt intensive Kämpfe und emotionale Momente. Limitierte Editionen verfügbar.",
+      merchandise: ["Figuren", "Kleidung", "Accessoires"],
+      trending: false
     },
     {
-      title: 'Jujutsu Kaisen Season 2',
-      rating: 8.9,
-      status: 'Aktuell',
-      episode: 'Episode 8',
-      description: 'Yuji und seine Freunde stellen sich neuen Herausforderungen.',
-      image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop',
-      merchandiseCount: 16
+      id: 3,
+      title: "Attack on Titan",
+      subtitle: "The Final Season",
+      rating: 9.4,
+      popularity: "97%",
+      image: "https://images.pexels.com/photos/8088495/pexels-photo-8088495.jpeg?auto=compress&cs=tinysrgb&w=800",
+      genre: ["Action", "Drama", "Fantasy"],
+      description: "Das epische Finale einer Legende. Sammle die letzten exklusiven Merchandise-Artikel dieser ikonischen Serie.",
+      merchandise: ["Figuren", "Poster", "Replicas"],
+      trending: true
     }
   ];
 
   return (
-    <section className="py-20 bg-background relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
-      
-      <div className="container mx-auto px-4 relative z-10">
+    <section className="py-20 px-4 md:px-8 lg:px-16 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-violet-500/30 to-purple-500/30 rounded-full blur-3xl floating-element"></div>
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-r from-blue-500/30 to-cyan-500/30 rounded-full blur-3xl floating-element"></div>
+      </div>
+
+      <div className="container mx-auto relative z-10">
+        {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            <span className="bg-gradient-to-r from-purple-400 via-blue-400 to-pink-400 bg-clip-text text-transparent">
-              Featured Anime
-            </span>
-            <br />
-            <span className="text-2xl md:text-3xl font-normal text-muted-foreground">
-              der Winter Season
-            </span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-500/20 to-purple-500/20 rounded-full border border-white/10 mb-6">
+            <TrendingUp className="w-4 h-4 text-violet-400" />
+            <span className="text-sm font-medium text-violet-300">Trending Now</span>
+          </div>
+          <h2 className="section-title">
+            Featured Anime
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Die beliebtesten Anime der aktuellen Season mit exklusivem Merchandise
+          <p className="section-subtitle">
+            Entdecke die beliebtesten Anime der Saison und ihre exklusiven Merchandise-Kollektionen
           </p>
         </div>
 
+        {/* Featured Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {featuredAnime.map((anime, index) => (
-            <Card key={index} className="group overflow-hidden glass-card hover:shadow-modern-xl transition-all duration-500 hover:-translate-y-2 animate-fade-in">
-              <div className="relative">
-                <img 
-                  src={anime.image} 
-                  alt={anime.title}
-                  className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                <div className="absolute top-4 left-4 flex gap-2">
-                  <Badge className={`${anime.status === 'Finale' ? 'bg-red-500/90 hover:bg-red-600' : 'bg-green-500/90 hover:bg-green-600'} text-white backdrop-blur-sm neon-border`}>
-                    {anime.status}
-                  </Badge>
-                  <Badge variant="secondary" className="bg-background/80 text-foreground backdrop-blur-sm">
-                    {anime.episode}
-                  </Badge>
+            <div key={anime.id} className={`glass-card-hover group ${index === 0 ? 'lg:col-span-2 lg:row-span-2' : ''}`}>
+              <div className="relative overflow-hidden rounded-2xl">
+                {/* Trending Badge */}
+                {anime.trending && (
+                  <div className="absolute top-4 left-4 z-10 px-3 py-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full text-xs font-bold text-white flex items-center gap-1">
+                    <TrendingUp className="w-3 h-3" />
+                    TRENDING
+                  </div>
+                )}
+
+                {/* Image */}
+                <div className={`relative ${index === 0 ? 'h-80 lg:h-96' : 'h-64'} overflow-hidden`}>
+                  <img 
+                    src={anime.image} 
+                    alt={anime.title}
+                    className="w-full h-full object-cover product-image"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 </div>
-                <div className="absolute top-4 right-4 flex items-center gap-1 bg-background/90 text-foreground px-3 py-1.5 rounded-xl backdrop-blur-sm">
-                  <Star className="w-4 h-4 fill-current text-yellow-400" />
-                  <span className="text-sm font-medium">{anime.rating}</span>
+
+                {/* Content */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  {/* Genre Tags */}
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {anime.genre.map((g) => (
+                      <span key={g} className="px-2 py-1 bg-white/20 backdrop-blur-sm rounded-lg text-xs font-medium">
+                        {g}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className={`font-bold text-gradient mb-1 ${index === 0 ? 'text-2xl lg:text-3xl' : 'text-xl'}`}>
+                    {anime.title}
+                  </h3>
+                  <p className="text-sm text-gray-300 mb-3">{anime.subtitle}</p>
+
+                  {/* Stats */}
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="flex items-center gap-1">
+                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                      <span className="text-sm font-medium">{anime.rating}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Eye className="w-4 h-4 text-blue-400" />
+                      <span className="text-sm font-medium">{anime.popularity}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Heart className="w-4 h-4 text-red-400" />
+                      <span className="text-sm font-medium">Favorit</span>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p className={`text-gray-300 mb-4 ${index === 0 ? 'text-base' : 'text-sm'}`}>
+                    {anime.description}
+                  </p>
+
+                  {/* Merchandise Tags */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {anime.merchandise.map((item) => (
+                      <span key={item} className="px-3 py-1 bg-gradient-to-r from-violet-500/30 to-purple-500/30 backdrop-blur-sm rounded-full text-xs font-medium border border-white/20">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex gap-3">
+                    <Button className="modern-button flex-1 text-white">
+                      Merchandise ansehen
+                    </Button>
+                    <Button variant="outline" className="px-4 py-2 border-white/30 text-white hover:bg-white/10 rounded-xl backdrop-blur-sm">
+                      <Heart className="w-4 h-4" />
+                    </Button>
+                  </div>
                 </div>
               </div>
-              
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
-                  {anime.title}
-                </h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed">{anime.description}</p>
-                
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-sm text-muted-foreground">
-                    {anime.merchandiseCount} Artikel verfügbar
-                  </span>
-                  <span className="text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
-                    Bis März 2025
-                  </span>
-                </div>
-                
-                <Button className="w-full modern-button text-white hover:shadow-glow-lg group-hover:animate-glow">
-                  Merchandise ansehen
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
-                </Button>
-              </CardContent>
-            </Card>
+            </div>
           ))}
+        </div>
+
+        {/* View All Button */}
+        <div className="text-center mt-12">
+          <Button className="modern-button text-white px-12 py-4">
+            Alle Featured Anime ansehen
+          </Button>
         </div>
       </div>
     </section>

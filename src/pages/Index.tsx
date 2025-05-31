@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import SeasonCountdown from '@/components/SeasonCountdown';
 import FeaturedAnime from '@/components/FeaturedAnime';

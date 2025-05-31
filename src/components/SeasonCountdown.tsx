@@ -1,106 +1,128 @@
-
 import { useState, useEffect } from 'react';
-import { Card } from '@/components/ui/card';
-
-interface TimeLeft {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
+import { Calendar, Clock, Star, Zap } from 'lucide-react';
 
 const SeasonCountdown = () => {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-
-  // Define season dates
-  const seasons = [
-    { name: 'Spring 2025', start: new Date('2025-04-01'), end: new Date('2025-06-30') },
-    { name: 'Summer 2025', start: new Date('2025-07-01'), end: new Date('2025-09-30') },
-    { name: 'Fall 2025', start: new Date('2025-10-01'), end: new Date('2025-12-31') },
-    { name: 'Winter 2026', start: new Date('2026-01-01'), end: new Date('2026-03-31') }
-  ];
-
-  const getCurrentAndNextSeason = () => {
-    const now = new Date();
-    const currentSeason = seasons.find(season => now >= season.start && now <= season.end);
-    
-    if (currentSeason) {
-      return {
-        current: currentSeason,
-        next: seasons[seasons.findIndex(s => s === currentSeason) + 1] || seasons[0]
-      };
-    }
-    
-    // If no current season, find the next upcoming one
-    const nextSeason = seasons.find(season => now < season.start) || seasons[0];
-    return {
-      current: { name: 'Winter 2025', start: new Date('2025-01-01'), end: new Date('2025-03-31') },
-      next: nextSeason
-    };
-  };
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
 
   useEffect(() => {
+    // Next season start (example: Spring 2024)
+    const nextSeason = new Date('2024-04-01T00:00:00');
+    
     const timer = setInterval(() => {
-      const { next } = getCurrentAndNextSeason();
       const now = new Date().getTime();
-      const targetTime = next.start.getTime();
-      const difference = targetTime - now;
-
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-        setTimeLeft({ days, hours, minutes, seconds });
+      const distance = nextSeason.getTime() - now;
+      
+      if (distance > 0) {
+        setTimeLeft({
+          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((distance % (1000 * 60)) / 1000)
+        });
       }
     }, 1000);
 
     return () => clearInterval(timer);
   }, []);
 
-  const { current, next } = getCurrentAndNextSeason();
-
   return (
-    <div className="bg-modern-gradient text-white py-16 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-blue-500/20 to-pink-500/20"></div>
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-      
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-3 animate-float">Aktuelle Season: {current.name}</h2>
-          <p className="text-white/90 text-lg">Limitierte Kollektionen nur für diese Season verfügbar!</p>
+    <section className="relative py-20 px-4 md:px-8 lg:px-16 overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-violet-500/20 to-purple-500/20 rounded-full blur-3xl floating-element"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl floating-element"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-gradient-to-r from-pink-500/10 to-rose-500/10 rounded-full blur-3xl floating-element"></div>
+      </div>
+
+      <div className="container mx-auto text-center relative z-10">
+        {/* Header */}
+        <div className="mb-12">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-500/20 to-purple-500/20 rounded-full border border-white/10 mb-6">
+            <Star className="w-4 h-4 text-violet-400" />
+            <span className="text-sm font-medium text-violet-300">Nächste Season</span>
+            <Zap className="w-4 h-4 text-violet-400" />
+          </div>
+          <h2 className="section-title">
+            Spring Season 2024
+          </h2>
+          <p className="section-subtitle">
+            Bereite dich auf die heißesten neuen Anime vor und sichere dir exklusive Merchandise-Artikel
+          </p>
         </div>
-        
-        <Card className="gradient-card border-white/20 text-white max-w-2xl mx-auto shadow-modern-xl">
-          <div className="p-8 text-center">
-            <h3 className="text-xl font-semibold mb-6 bg-gradient-to-r from-purple-200 to-pink-200 bg-clip-text text-transparent">
-              Nächste Season: {next.name}
-            </h3>
-            <div className="grid grid-cols-4 gap-4">
-              <div className="bg-purple-gradient rounded-2xl p-4 shadow-glow animate-glow">
-                <div className="text-3xl font-bold">{timeLeft.days}</div>
-                <div className="text-sm opacity-90">Tage</div>
-              </div>
-              <div className="bg-blue-gradient rounded-2xl p-4 shadow-glow animate-glow animation-delay-200">
-                <div className="text-3xl font-bold">{timeLeft.hours}</div>
-                <div className="text-sm opacity-90">Stunden</div>
-              </div>
-              <div className="bg-pink-gradient rounded-2xl p-4 shadow-glow animate-glow animation-delay-400">
-                <div className="text-3xl font-bold">{timeLeft.minutes}</div>
-                <div className="text-sm opacity-90">Minuten</div>
-              </div>
-              <div className="bg-modern-gradient rounded-2xl p-4 shadow-glow animate-glow animation-delay-600">
-                <div className="text-3xl font-bold">{timeLeft.seconds}</div>
-                <div className="text-sm opacity-90">Sekunden</div>
+
+        {/* Countdown */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto mb-12">
+          {[
+            { label: 'Tage', value: timeLeft.days, icon: Calendar },
+            { label: 'Stunden', value: timeLeft.hours, icon: Clock },
+            { label: 'Minuten', value: timeLeft.minutes, icon: Clock },
+            { label: 'Sekunden', value: timeLeft.seconds, icon: Clock }
+          ].map((item, index) => (
+            <div key={item.label} className="glass-card p-6 md:p-8 group hover:scale-105 transition-all duration-300">
+              <div className="flex flex-col items-center space-y-3">
+                <div className="p-3 bg-gradient-to-br from-violet-500/20 to-purple-500/20 rounded-2xl group-hover:from-violet-500/30 group-hover:to-purple-500/30 transition-all">
+                  <item.icon className="w-6 h-6 text-violet-400" />
+                </div>
+                <div className="text-3xl md:text-4xl font-bold text-gradient font-mono">
+                  {item.value.toString().padStart(2, '0')}
+                </div>
+                <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
+                  {item.label}
+                </div>
               </div>
             </div>
-          </div>
-        </Card>
+          ))}
+        </div>
+
+        {/* Call to Action */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <button className="modern-button text-white font-semibold">
+            Frühe Vorbestellungen
+          </button>
+          <button className="px-8 py-4 rounded-2xl font-semibold border border-white/20 text-foreground hover:bg-white/5 transition-all duration-300 backdrop-blur-xl">
+            Season Preview
+          </button>
+        </div>
+
+        {/* Featured Upcoming Anime */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {[
+            {
+              title: "Demon Slayer S4",
+              studio: "Ufotable",
+              image: "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              title: "Attack on Titan Final",
+              studio: "WIT Studio",
+              image: "https://images.pexels.com/photos/8088495/pexels-photo-8088495.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              title: "Jujutsu Kaisen S3",
+              studio: "MAPPA",
+              image: "https://images.pexels.com/photos/7991225/pexels-photo-7991225.jpeg?auto=compress&cs=tinysrgb&w=400"
+            }
+          ].map((anime, index) => (
+            <div key={index} className="glass-card p-6 group hover:scale-105 transition-all duration-300">
+              <div className="aspect-video rounded-2xl overflow-hidden mb-4 bg-gradient-to-br from-violet-500/20 to-purple-500/20">
+                <img 
+                  src={anime.image} 
+                  alt={anime.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <h3 className="text-lg font-bold text-gradient mb-1">{anime.title}</h3>
+              <p className="text-sm text-muted-foreground">{anime.studio}</p>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
