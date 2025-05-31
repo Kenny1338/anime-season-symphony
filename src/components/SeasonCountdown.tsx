@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Calendar, Clock, Star, Zap } from 'lucide-react';
 
@@ -10,8 +11,8 @@ const SeasonCountdown = () => {
   });
 
   useEffect(() => {
-    // Next season start (example: Spring 2024)
-    const nextSeason = new Date('2024-04-01T00:00:00');
+    // Next season start (Spring 2025)
+    const nextSeason = new Date('2025-04-01T00:00:00');
     
     const timer = setInterval(() => {
       const now = new Date().getTime();
@@ -24,6 +25,8 @@ const SeasonCountdown = () => {
           minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
           seconds: Math.floor((distance % (1000 * 60)) / 1000)
         });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
       }
     }, 1000);
 
@@ -48,7 +51,7 @@ const SeasonCountdown = () => {
             <Zap className="w-4 h-4 text-violet-400" />
           </div>
           <h2 className="section-title">
-            Spring Season 2024
+            Spring Season 2025
           </h2>
           <p className="section-subtitle">
             Bereite dich auf die heißesten neuen Anime vor und sichere dir exklusive Merchandise-Artikel
