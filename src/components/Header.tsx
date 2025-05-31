@@ -10,7 +10,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="glass-card sticky top-0 z-50 border-b border-white/10 mx-8 mt-4 rounded-2xl">
+    <header className="glass-card sticky top-0 z-50 border-b border-white/10 mx-16 mt-4 rounded-2xl">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
