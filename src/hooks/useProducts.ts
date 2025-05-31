@@ -33,8 +33,10 @@ export interface Product {
   };
 }
 
+type ProductCategory = 'klamotten' | 'accessoires' | 'figuren';
+
 export const useProducts = (filters?: {
-  category?: string;
+  category?: ProductCategory;
   featured?: boolean;
   trending?: boolean;
   limit?: number;
